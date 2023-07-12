@@ -6,6 +6,9 @@
 * controller
 * cmd
 * models
+* internal
+* handler
+* middleware
 
 ## Potential Problems
 
