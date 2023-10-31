@@ -43,6 +43,6 @@ func main() {
 		companyGroup.POST("", controllers.PostCompanies)
 	}
 	docs.SwaggerInfo.BasePath = "/api"
-	apiGroup.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	apiGroup.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler)) // swaggerui: http://localhost:8000/api/swagger/index.html
 	server.Run("0.0.0.0:8000")
 }
