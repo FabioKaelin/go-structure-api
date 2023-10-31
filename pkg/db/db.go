@@ -10,11 +10,6 @@ import (
 	_ "github.com/lib/pq" // postgres driver
 )
 
-func runSql(sql string) string {
-	// Placeholder for make DB select
-	return sql
-}
-
 var dbConn *sql.DB
 
 func UpdateDBConnection() error {

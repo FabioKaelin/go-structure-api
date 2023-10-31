@@ -26,9 +26,23 @@ func GetPersons(c *gin.Context) {
 // @Summary      Post a person
 // @Tags         persons
 // @Produce      json
-// @Success      200  {string}  string
+// @Accept       json
+// @Param        person  body  person.PersonPost true  "Person"
+// @Success      201  {string}  string
+// @Failure      500  {string}  string
 // @Router       /persons [post]
 func PostPersons(c *gin.Context) {
-	// placeholder
-	c.JSON(200, "Placeholder")
+	// bind the request body to the struct
+	var personData person.PersonPost
+	err := c.BindJSON(&personData)
+	if err != nil {
+		c.IndentedJSON(500, err)
+		return
+	}
+	err = person.CreatePerson(personData.Name, personData.Age, personData.CompanyId)
+	if err != nil {
+		c.IndentedJSON(500, err)
+		return
+	}
+	c.IndentedJSON(201, "Person created")
 }

@@ -40,6 +40,7 @@ func main() {
 	companyGroup := apiGroup.Group("/companies")
 	{
 		companyGroup.GET("", controllers.GetCompanies)
+		companyGroup.POST("", controllers.PostCompanies)
 	}
 	docs.SwaggerInfo.BasePath = "/api"
 	apiGroup.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

@@ -1,6 +1,6 @@
 basePath: /api
 definitions:
-  company.company:
+  company.Company:
     properties:
       id:
         type: integer
@@ -13,6 +13,15 @@ definitions:
         type: integer
       company:
         type: string
+      name:
+        type: string
+    type: object
+  person.PersonPost:
+    properties:
+      age:
+        type: integer
+      companyId:
+        type: integer
       name:
         type: string
     type: object
@@ -33,13 +42,37 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/company.company'
+              $ref: '#/definitions/company.Company'
             type: array
         "500":
           description: Internal Server Error
           schema:
             type: string
       summary: Get all companies
+      tags:
+      - companies
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Company
+        in: body
+        name: company
+        required: true
+        schema:
+          $ref: '#/definitions/company.Company'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Post a company
       tags:
       - companies
   /persons:
@@ -61,11 +94,24 @@ paths:
       tags:
       - persons
     post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Person
+        in: body
+        name: person
+        required: true
+        schema:
+          $ref: '#/definitions/person.PersonPost'
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
           schema:
             type: string
       summary: Post a person

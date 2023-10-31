@@ -2,14 +2,14 @@ package company
 
 import "api1-new/pkg/db"
 
-func GetCompany() ([]company, error) {
+func GetCompany() ([]Company, error) {
 	companiesDB, err := db.GetCompanies()
 	if err != nil {
 		return nil, err
 	}
-	var companies []company
+	var companies []Company
 	for _, companyDB := range companiesDB {
-		company := company{
+		company := Company{
 			Id:   companyDB.Id,
 			Name: companyDB.Name,
 		}
@@ -18,7 +18,15 @@ func GetCompany() ([]company, error) {
 	return companies, nil
 }
 
-type company struct {
-	Id   int    `json:"id"`
+func CreateCompany(name string) error {
+	err := db.CreateCompany(name)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+type Company struct {
+	Id   int    `json:"id,omitempty"`
 	Name string `json:"name"`
 }

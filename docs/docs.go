@@ -30,8 +30,45 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/company.company"
+                                "$ref": "#/definitions/company.Company"
                             }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "companies"
+                ],
+                "summary": "Post a company",
+                "parameters": [
+                    {
+                        "description": "Company",
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/company.Company"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     "500": {
@@ -71,6 +108,9 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -78,9 +118,26 @@ const docTemplate = `{
                     "persons"
                 ],
                 "summary": "Post a person",
+                "parameters": [
+                    {
+                        "description": "Person",
+                        "name": "person",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/person.PersonPost"
+                        }
+                    }
+                ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "type": "string"
                         }
@@ -90,7 +147,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "company.company": {
+        "company.Company": {
             "type": "object",
             "properties": {
                 "id": {
@@ -109,6 +166,20 @@ const docTemplate = `{
                 },
                 "company": {
                     "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "person.PersonPost": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "companyId": {
+                    "type": "integer"
                 },
                 "name": {
                     "type": "string"

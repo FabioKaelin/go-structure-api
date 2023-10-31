@@ -4,7 +4,10 @@ import "api1-new/pkg/db"
 
 func GetPerson() ([]Person, error) {
 	persons := []Person{}
-	personDBs := db.GetPerson()
+	personDBs, err := db.GetPerson()
+	if err != nil {
+		return nil, err
+	}
 	companies, err := db.GetCompanies()
 	if err != nil {
 		return nil, err
@@ -26,8 +29,22 @@ func GetPerson() ([]Person, error) {
 	return persons, nil
 }
 
+func CreatePerson(name string, age int, companyId int) error {
+	err := db.CreatePerson(name, age, companyId)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 type Person struct {
 	Name        string `json:"name"`
 	Age         int    `json:"age"`
 	CompanyName string `json:"company"`
+}
+
+type PersonPost struct {
+	Name      string `json:"name"`
+	Age       int    `json:"age"`
+	CompanyId int    `json:"companyId"`
 }
