@@ -11,9 +11,14 @@ import (
 // @Tags         persons
 // @Produce      json
 // @Success      200  {array}  person.Person
+// @Failure      500  {string}  string
 // @Router       /persons [get]
 func GetPersons(c *gin.Context) {
-	data := person.GetPerson()
+	data, err := person.GetPerson()
+	if err != nil {
+		c.IndentedJSON(500, err)
+		return
+	}
 	c.IndentedJSON(200, data)
 }
 

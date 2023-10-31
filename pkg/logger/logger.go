@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"api1-new/config"
+	"api1-new/pkg/config"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

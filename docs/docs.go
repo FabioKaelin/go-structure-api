@@ -30,8 +30,14 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/db.company"
+                                "$ref": "#/definitions/company.company"
                             }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
@@ -54,6 +60,12 @@ const docTemplate = `{
                             "items": {
                                 "$ref": "#/definitions/person.Person"
                             }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 }
@@ -78,7 +90,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "db.company": {
+        "company.company": {
             "type": "object",
             "properties": {
                 "id": {

@@ -2,8 +2,11 @@ package company
 
 import "api1-new/pkg/db"
 
-func GetCompany() []company {
-	companiesDB := db.GetCompanies()
+func GetCompany() ([]company, error) {
+	companiesDB, err := db.GetCompanies()
+	if err != nil {
+		return nil, err
+	}
 	var companies []company
 	for _, companyDB := range companiesDB {
 		company := company{
@@ -12,7 +15,7 @@ func GetCompany() []company {
 		}
 		companies = append(companies, company)
 	}
-	return companies
+	return companies, nil
 }
 
 type company struct {

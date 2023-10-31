@@ -2,6 +2,7 @@ package main
 
 import (
 	"api1-new/controllers"
+	"api1-new/pkg/config"
 	"api1-new/pkg/logger"
 
 	"api1-new/docs"
@@ -19,7 +20,10 @@ import (
 // @BasePath  /api
 
 func main() {
+
 	logger.InitializeZapCustomLogger()
+	// db.UpdateDBConnection() // TODO: uncomment this line when you have a database
+	gin.SetMode(config.GinMode)
 	server := gin.Default()
 	server.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{

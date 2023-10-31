@@ -2,10 +2,14 @@ package person
 
 import "api1-new/pkg/db"
 
-func GetPerson() []Person {
+func GetPerson() ([]Person, error) {
 	persons := []Person{}
 	personDBs := db.GetPerson()
-	companies := db.GetCompanies()
+	companies, err := db.GetCompanies()
+	if err != nil {
+		return nil, err
+	}
+
 	for _, personDB := range personDBs {
 		person := Person{
 			Name: personDB.Name,
@@ -19,7 +23,7 @@ func GetPerson() []Person {
 		}
 		persons = append(persons, person)
 	}
-	return persons
+	return persons, nil
 }
 
 type Person struct {

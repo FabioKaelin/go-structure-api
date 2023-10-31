@@ -1,6 +1,6 @@
 basePath: /api
 definitions:
-  db.company:
+  company.company:
     properties:
       id:
         type: integer
@@ -33,8 +33,12 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/db.company'
+              $ref: '#/definitions/company.company'
             type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
       summary: Get all companies
       tags:
       - companies
@@ -49,6 +53,10 @@ paths:
             items:
               $ref: '#/definitions/person.Person'
             type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
       summary: Get all persons
       tags:
       - persons
