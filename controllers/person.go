@@ -6,12 +6,24 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetPerson(c *gin.Context) {
+// GetPersons godoc
+// @Summary      Get all persons
+// @Tags         persons
+// @Produce      json
+// @Success      200  {array}  person.Person
+// @Router       /persons [get]
+func GetPersons(c *gin.Context) {
 	data := person.GetPerson()
-	c.JSON(200, data)
+	c.IndentedJSON(200, data)
 }
 
-func PostPerson(c *gin.Context) {
+// PostPersons godoc
+// @Summary      Post a person
+// @Tags         persons
+// @Produce      json
+// @Success      200  {string}  string
+// @Router       /persons [post]
+func PostPersons(c *gin.Context) {
 	// placeholder
 	c.JSON(200, "Placeholder")
 }

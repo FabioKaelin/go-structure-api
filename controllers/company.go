@@ -6,7 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetCompany(c *gin.Context) {
+// GetCompanies godoc
+// @Summary      Get all companies
+// @Tags         companies
+// @Produce      json
+// @Success      200  {array}  db.company
+// @Router       /companies [get]
+func GetCompanies(c *gin.Context) {
 	data := db.GetCompanies()
-	c.JSON(200, data)
+	c.IndentedJSON(200, data)
 }

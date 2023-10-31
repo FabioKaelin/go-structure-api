@@ -14,6 +14,6 @@ func GetCompanies() []company {
 }
 
 type company struct {
-	Id   int
-	Name string
+	Id   int    `json:"id"`
+	Name string `json:"name"`
 }
