@@ -12,12 +12,12 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title           Go Example API
-// @version         1.0
-// @description     Example API for demonstrating how to use Swagger with Gin and its folder structure.
+//	@title			Go Example API
+//	@version		1.0
+//	@description	Example API for demonstrating how to use Swagger with Gin and its folder structure.
 
-// @host      localhost:8000
-// @BasePath  /api
+//	@host		localhost:8000
+//	@BasePath	/api
 
 func main() {
 
